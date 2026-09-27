@@ -8,8 +8,108 @@
 <link rel="manifest" href='data:application/manifest+json,{"name":"Wise King AI","short_name":"WiseKing","start_url":".","display":"standalone","background_color":"#0a0a0f","theme_color":"#6366f1","icons":[{"src":"data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 192 192%22><rect width=%22192%22 height=%22192%22 rx=%2244%22 fill=%22%236366f1%22/><text x=%2296%22 y=%22130%22 font-size=%22110%22 text-anchor=%22middle%22>👑</text></svg>","sizes":"192x192","type":"image/svg+xml"}]}'>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
 <style>
+  
+/* ============ SYNTAX HIGHLIGHTING (Colorful Code) ============ */
+.md pre {
+  background: #0d1117 !important;
+  border: 1px solid #30363d !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  margin: 14px 0 !important;
+}
+.md pre code {
+  display: block !important;
+  padding: 16px 18px !important;
+  overflow-x: auto !important;
+  font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+  color: #e6edf3 !important;
+  background: transparent !important;
+  white-space: pre !important;
+}
+
+/* Keyword colors (function, const, let, if, return, etc.) */
+.md pre code .kw, .md pre code span[data-type="keyword"] { color: #ff7b72 !important; font-weight: 600; }
+/* Strings */
+.md pre code .str { color: #a5d6ff !important; }
+/* Numbers */
+.md pre code .num { color: #79c0ff !important; }
+/* Comments */
+.md pre code .com { color: #8b949e !important; font-style: italic; }
+/* Functions */
+.md pre code .fn { color: #d2a8ff !important; }
+/* Variables */
+.md pre code .var { color: #ffa657 !important; }
+/* Class/Tags */
+.md pre code .tag { color: #7ee787 !important; }
+/* Operators */
+.md pre code .op { color: #ff7b72 !important; }
+/* Default text */
+.md pre code { color: #e6edf3 !important; }
+
+/* Simple auto-coloring for basic code blocks */
+.md pre code[class*="language-"] {
+  /* Manual coloring will apply via JavaScript below */
+ /* ============ SYNTAX HIGHLIGHTING (Colorful Code) ============ */
+}  
+.md pre {
+  background: #0d1117 !important;
+  border: 1px solid #30363d !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  margin: 14px 0 !important;
+}
+.md pre code {
+  display: block !important;
+  padding: 16px 18px !important;
+  overflow-x: auto !important;
+  font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+  color: #e6edf3 !important;
+  background: transparent !important;
+  white-space: pre !important;
+}
+
+/* Keyword colors (function, const, let, if, return, etc.) */
+.md pre code .kw, .md pre code span[data-type="keyword"] { color: #ff7b72 !important; font-weight: 600; }
+/* Strings */
+.md pre code .str { color: #a5d6ff !important; }
+/* Numbers */
+.md pre code .num { color: #79c0ff !important; }
+/* Comments */
+.md pre code .com { color: #8b949e !important; font-style: italic; }
+/* Functions */
+.md pre code .fn { color: #d2a8ff !important; }
+/* Variables */
+.md pre code .var { color: #ffa657 !important; }
+/* Class/Tags */
+.md pre code .tag { color: #7ee787 !important; }
+/* Operators */
+.md pre code .op { color: #ff7b72 !important; }
+/* Default text */
+.md pre code { color: #e6edf3 !important; }
+
+/* Simple auto-coloring for basic code blocks */
+.md pre code[class*="language-"] {
+  /* Manual coloring will apply via JavaScript below */
+  }
   :root{
     --bg-primary:#0a0a0f;--bg-secondary:#111118;--bg-elevated:#1a1a24;--bg-input:#1e1e2a;--bg-hover:#252533;
     --border-subtle:rgba(255,255,255,0.06);--border-default:rgba(255,255,255,0.1);--border-strong:rgba(255,255,255,0.16);
@@ -360,7 +460,80 @@
     .top-btn .label{display:none}
     .top-btn{padding:8px 10px}
     .profile-menu-popup{width:calc(100vw - 32px);right:-10px}
-  }
+  });
+}
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+<script>
+// Auto-highlight code blocks after every AI message
+function highlightCodeBlocks() {
+  if (typeof Prism === 'undefined') return;
+  document.querySelectorAll('.md pre code:not(.language-none):not([data-highlighted])').forEach(block => {
+    try { Prism.}(block); } catch(e) {}
+  });
+}
+
+// Watch for new messages and highlight automatically
+const observer = new MutationObserver(() => { setTimeout(highlightCodeBlocks, 80); });
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const area = document.getElementById('messagesArea');
+    if (area) observer.observe(area, { childList: true, subtree: true });
+    highlightCodeBlocks();
+  }, 800);
+});
+
+// Also highlight on every render
+const _origRender = window.renderMessages;
+if (typeof _origRender === 'function') {
+  window.renderMessages = function() {
+    _origRender.apply(this, arguments);
+    setTimeout(highlightCodeBlocks, 100);
+  };
+}
+</script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+<script>
+// Auto-highlight code blocks after every AI message
+function highlightCodeBlocks() {
+  if (typeof Prism === 'undefined') return;
+  document.querySelectorAll('.md pre code:not(.language-none):not([data-highlighted])').forEach(block => {
+    try { Prism.highlightElement(block); } catch(e) {}
+  });
+}
+
+// Watch for new messages and highlight automatically
+const observer = new MutationObserver(() => { setTimeout(highlightCodeBlocks, 80); });
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const area = document.getElementById('messagesArea');
+    if (area) observer.observe(area, { childList: true, subtree: true });
+    highlightCodeBlocks();
+  }, 800);
+});
+
+// Also highlight on every render
+const _origRender = window.renderMessages;
+if (typeof _origRender === 'function') {
+  window.renderMessages = function() {
+    _origRender.apply(this, arguments);
+    setTimeout(highlightCodeBlocks, 100);
+  };
+}
+</script>
 </style>
 </head>
 <body>
