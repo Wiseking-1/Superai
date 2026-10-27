@@ -6,11 +6,25 @@
 <meta name="theme-color" content="#0a0a0f">
 <title>Wise King AI — IBRAHIM ABDULLAHI 🇳🇬</title>
 <link rel="manifest" href='data:application/manifest+json,{"name":"Wise King AI","short_name":"WiseKing","start_url":".","display":"standalone","background_color":"#0a0a0f","theme_color":"#6366f1"}'>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%23a855f7'/></linearGradient></defs><rect width='100' height='100' rx='22' fill='url(%23g)'/><path d='M28 68 L22 38 L38 48 L50 30 L62 48 L78 38 L72 68 Z' fill='white'/><rect x='30' y='70' width='40' height='7' rx='3' fill='white'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
 
 <style>
+/* YOUR EXACT CSS */
 :root{
   --bg-primary:#0a0a0f;--bg-secondary:#111118;--bg-elevated:#1a1a24;--bg-input:#1e1e2a;--bg-hover:#252533;
   --border-subtle:rgba(255,255,255,0.06);--border-default:rgba(255,255,255,0.1);--border-strong:rgba(255,255,255,0.16);
@@ -31,7 +45,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg-primary);color:var(--t
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:8px}
 body.light-mode ::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15)}
 
-/* ============ SHARP ANIMATED LOGO ============ */
+/* FIXED LOGO CSS */
 .wk-logo{width:36px;height:36px;flex-shrink:0;display:block;filter:drop-shadow(0 0 8px rgba(99,102,241,0.5))}
 .wk-logo .crown-path{fill:url(#wkGrad);transform-origin:center;animation:logoPulse 2.4s ease-in-out infinite}
 .wk-logo .base-path{fill:#f5f5f7;opacity:0.95}
@@ -45,7 +59,6 @@ body.light-mode ::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15)}
 .brand-logo{width:32px;height:32px;border-radius:10px;background:transparent;display:flex;align-items:center;justify-content:center;box-shadow:none;overflow:visible}
 .welcome-logo{background:transparent!important;box-shadow:none!important;width:80px!important;height:80px!important}
 .login-logo{background:transparent!important;box-shadow:none!important;width:72px!important;height:72px!important}
-/* ============================================ */
 
 #loginScreen{position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(99,102,241,0.15) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(168,85,247,0.12) 0%,transparent 50%),var(--bg-primary);display:flex;align-items:center;justify-content:center;z-index:9999;padding:24px;transition:opacity 0.4s ease;overflow-y:auto}
 #loginScreen.hidden{opacity:0;pointer-events:none;display:none}
@@ -198,7 +211,6 @@ body.light-mode .welcome h1{background:linear-gradient(135deg,#111827,#4b5563);-
 .message.user .msg-body{display:flex;flex-direction:column;align-items:flex-end}
 .msg-name{font-size:12.5px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;padding:0 4px;display:flex;align-items:center;gap:6px}
 .message.user .msg-name{text-align:right;flex-direction:row-reverse}
-.edited-tag{font-size:10.5px;color:var(--text-tertiary);font-style:italic;font-weight:400}
 .msg-content-wrap{position:relative;width:100%;display:flex}
 .message.user .msg-content-wrap{justify-content:flex-end}
 .msg-content{padding:12px 16px;border-radius:var(--radius-lg);font-size:15px;line-height:1.7;word-wrap:break-word;overflow-wrap:break-word;white-space:pre-wrap;max-width:100%}
@@ -215,8 +227,6 @@ body.light-mode .welcome h1{background:linear-gradient(135deg,#111827,#4b5563);-
 .thinking-dots span:nth-child(2){animation-delay:0.18s}
 .thinking-dots span:nth-child(3){animation-delay:0.36s}
 @keyframes thinkBounce{0%,80%,100%{transform:translateY(0) scale(0.7);opacity:0.5}40%{transform:translateY(-6px) scale(1);opacity:1}}
-.typing-cursor{display:inline-block;color:var(--accent);font-weight:300;animation:blink 0.9s infinite;margin-left:2px}
-@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
 .msg-action-bar{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap;opacity:0;transition:opacity 0.2s}
 .message:hover .msg-action-bar{opacity:1}
 .message.user .msg-action-bar{justify-content:flex-end}
@@ -334,82 +344,23 @@ body.light-mode .md code{color:#d6336c;background:#f0f0f2}
 .settings-group-title{font-size:13px;font-weight:600;color:var(--text-secondary);margin-bottom:10px;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:0.04em}
 .settings-card{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:14px}
 
-.vault-item{display:flex;align-items:flex-start;gap:10px;padding:12px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-md);margin-bottom:8px}
-.vault-item .vi-text{flex:1;font-size:13.5px;line-height:1.5;word-break:break-word}
-.vault-item .vi-del{background:transparent;border:none;color:#f87171;cursor:pointer;font-size:14px;padding:4px}
-.vault-empty{text-align:center;padding:24px;color:var(--text-secondary);font-size:13.5px}
-.memory-item{display:flex;align-items:flex-start;gap:10px;padding:10px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-md);margin-bottom:6px}
-.memory-item .mi-text{flex:1;font-size:12.5px;line-height:1.5;word-break:break-word;color:var(--text-secondary)}
-.memory-item .mi-del{background:transparent;border:none;color:#f87171;cursor:pointer;font-size:12px;padding:2px}
-
-#sharePopup{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:4000;padding:20px}
-#sharePopup.show{display:flex}
-.share-card{background:var(--bg-secondary);border:1px solid var(--border-default);border-radius:var(--radius-xl);max-width:420px;width:100%;padding:24px;box-shadow:var(--shadow-lg)}
-.share-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.share-title{font-size:18px;font-weight:600;display:flex;align-items:center;gap:10px}
-.share-close{background:transparent;border:none;color:var(--text-secondary);font-size:18px;cursor:pointer;padding:4px}
-.share-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:20px}
-.share-platform{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;padding:10px 4px;border-radius:var(--radius-md);background:transparent;border:none;font-family:inherit;color:var(--text-primary)}
-.share-platform .sp-icon{width:52px;height:52px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:24px;color:white}
-.share-platform .sp-name{font-size:12px;color:var(--text-secondary);font-weight:500}
-.sp-whatsapp{background:linear-gradient(135deg,#25D366,#128C7E)}
-.sp-facebook{background:linear-gradient(135deg,#1877F2,#0a5dc2)}
-.sp-telegram{background:linear-gradient(135deg,#229ED9,#0088cc)}
-.sp-x{background:linear-gradient(135deg,#000,#1a1a1a)}
-.share-cancel{width:100%;padding:12px;border-radius:var(--radius-md);background:var(--bg-elevated);border:1px solid var(--border-default);color:var(--text-primary);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit}
-
-.download-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
-.download-item{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px;display:flex;flex-direction:column;gap:8px}
-.download-item .di-preview{width:100%;aspect-ratio:1;border-radius:8px;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;font-size:40px}
-.download-item .di-title{font-size:13px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.download-item .di-btn{background:var(--accent-gradient);border:none;color:white;font-size:12px;font-weight:600;padding:8px;border-radius:8px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px}
-.data-stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px}
-.data-stat{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px}
-.data-stat .ds-label{font-size:11px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px}
-.data-stat .ds-value{font-size:20px;font-weight:700;color:var(--accent-hover)}
-.music-card{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:14px;margin-bottom:10px}
-.music-card .music-title{font-size:15px;font-weight:600;color:var(--text-primary);margin-bottom:4px}
-.music-card .music-meta{font-size:12px;color:var(--text-tertiary);margin-bottom:8px}
-.music-card .music-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-.tv-card{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:12px;overflow:hidden;cursor:pointer;transition:all 0.2s}
-.tv-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-
-#aiCallOverlay{display:none;position:fixed;inset:0;background:linear-gradient(180deg,#0a0a0f 0%,#1a1a24 100%);z-index:99999;flex-direction:column;align-items:center;justify-content:space-between;padding:40px 20px}
-@keyframes pulseCall{0%,100%{box-shadow:0 0 60px rgba(99,102,241,0.6)}50%{box-shadow:0 0 100px rgba(99,102,241,0.9)}}
-
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg-elevated);border:1px solid var(--border-default);padding:10px 20px;border-radius:var(--radius-full);font-size:13px;font-weight:500;z-index:5000;opacity:0;pointer-events:none;box-shadow:var(--shadow-lg);transition:all var(--transition-smooth);max-width:90vw;text-align:center}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
-.cloud-pill{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;padding:3px 8px;border-radius:99px;background:rgba(16,185,129,0.12);color:#34d399;font-weight:600;border:1px solid rgba(16,185,129,0.25)}
-.cloud-pill.local{background:rgba(251,191,36,0.12);color:#fbbf24;border-color:rgba(251,191,36,0.25)}
-.cloud-pill i{font-size:8px}
-
-@media(max-width:900px){.suggestions{grid-template-columns:1fr}}
 @media(max-width:768px){
   .sidebar{position:fixed;top:0;left:0;bottom:0;transform:translateX(-100%);box-shadow:var(--shadow-lg)}
   .sidebar.open{transform:translateX(0)}
-  .chat-topbar{padding:10px 12px}
   .chat-scroll{padding:16px 12px 220px}
   .input-dock{padding:8px 10px 14px}
-  .msg-avatar{width:30px;height:30px;font-size:13px}
-  .msg-body{max-width:calc(100% - 42px)}
   .chat-model-badge{display:none}
-  .message{gap:10px}
-  .modal{padding:20px}
-  .panel-header{padding:12px 16px}
-  .panel-body{padding:16px}
   .top-btn .label{display:none}
-  .top-btn{padding:8px 10px}
-  .profile-menu-popup{width:calc(100vw - 32px);right:-10px}
-  .welcome-popup-card{padding:32px 24px}
-  .wp-title{font-size:20px}
   .msg-action-bar{opacity:1}
 }
 </style>
 </head>
 <body>
 
-<!-- ============ SHARED LOGO SVG DEFS ============ -->
+<!-- YOUR EXACT SVG DEFS -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="wkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -417,28 +368,10 @@ body.light-mode .md code{color:#d6336c;background:#f0f0f2}
       <stop offset="50%" stop-color="#8b5cf6"/>
       <stop offset="100%" stop-color="#a855f7"/>
     </linearGradient>
-    <linearGradient id="wkGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#818cf8"/>
-      <stop offset="100%" stop-color="#c084fc"/>
-    </linearGradient>
   </defs>
 </svg>
 
 <script>
-// ========== REUSABLE SHARP LOGO ==========
-window.WK_LOGO_SVG = function(size, className) {
-  size = size || 36;
-  className = className || 'wk-logo';
-  return '<svg class="'+className+'" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="'+size+'" height="'+size+'">'+
-    '<rect x="6" y="6" width="88" height="88" rx="20" fill="url(#wkGrad)" opacity="0.14"/>'+
-    '<path class="crown-path" d="M20 72 L14 38 L34 50 L50 24 L66 50 L86 38 L80 72 Z"/>'+
-    '<rect class="base-path" x="22" y="74" width="56" height="6" rx="3"/>'+
-    '<circle class="spark" cx="50" cy="18" r="2.6"/>'+
-    '<circle class="spark" cx="16" cy="34" r="2"/>'+
-    '<circle class="spark" cx="84" cy="34" r="2"/>'+
-  '</svg>';
-};
-// Inline the defs so external SVG-in-CSS works when injected later
 window.WK_LOGO_INLINE = function(size) {
   size = size || 36;
   var id = 'g' + Math.random().toString(36).slice(2,8);
@@ -460,7 +393,7 @@ window.WK_LOGO_INLINE = function(size) {
   <div class="login-card">
     <div class="login-logo" id="loginLogo"></div>
     <h1 class="login-title">Welcome to Wise King AI</h1>
-    <p class="login-subtitle">Your conversations, memories, and creations — synced forever. Truth. Cloud. Hope.</p>
+    <p class="login-subtitle">Your conversations, memories, and creations — synced forever.</p>
     <div class="auth-error" id="authError"></div>
     <div class="auth-success" id="authSuccess"></div>
     <button class="social-btn" onclick="signInWithGoogle()"><i class="fab fa-google" style="color:#ea4335"></i> Continue with Google</button>
@@ -541,11 +474,9 @@ window.WK_LOGO_INLINE = function(size) {
       <button class="menu-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
       <div class="chat-title-wrap">
         <span class="chat-title" id="chatTitle">New chat</span>
-        <span class="chat-model-badge" id="modelBadge"><i class="fas fa-circle"></i> <span id="modelBadgeText">Gemini 2.5 Flash</span></span>
-        <span class="cloud-pill" id="cloudPill" title="Cloud sync status"><i class="fas fa-circle"></i> <span id="cloudPillText">Local</span></span>
+        <span class="chat-model-badge" id="modelBadge"><i class="fas fa-circle"></i> <span id="modelBadgeText">Gemini 3.8</span></span>
       </div>
       <div class="chat-actions">
-        <button class="top-btn install-btn" id="installAppBtn" onclick="promptInstallApp()" style="display:none"><i class="fas fa-download"></i><span class="label"> Install</span></button>
         <button class="top-btn" onclick="startAICall()" style="background:linear-gradient(135deg,#10b981,#059669);color:white;border:none"><i class="fas fa-phone"></i><span class="label"> Call AI</span></button>
         <button class="top-btn" onclick="openSearchWebPanel()"><i class="fas fa-globe"></i><span class="label"> Search</span></button>
         <button class="top-btn" onclick="openBuildAppPanel()"><i class="fas fa-code"></i><span class="label"> Build</span></button>
@@ -553,7 +484,7 @@ window.WK_LOGO_INLINE = function(size) {
         <button class="top-btn" onclick="goToWelcome()"><i class="fas fa-house"></i><span class="label"> Home</span></button>
       </div>
       <div class="top-profile-container" id="topProfileContainer">
-        <div class="top-profile-avatar" id="topProfileAvatar" role="button" tabindex="0">👑</div>
+        <div class="top-profile-avatar" id="topProfileAvatar" onclick="toggleTopProfileMenu(event)">👑</div>
         <div class="profile-menu-popup" id="topProfileMenu">
           <div class="pm-header">
             <div class="pm-user-info">
@@ -563,16 +494,7 @@ window.WK_LOGO_INLINE = function(size) {
             <button class="pm-close" onclick="closeTopProfileMenu()"><i class="fas fa-times"></i></button>
           </div>
           <div class="pm-body">
-            <button class="pm-item" onclick="document.getElementById('profilePhotoInput').click(); closeTopProfileMenu();"><i class="fas fa-camera"></i> Upload Photo</button>
-            <input type="file" id="profilePhotoInput" accept="image/*" style="display:none" onchange="handleProfilePhotoUpload(event)">
-            <button class="pm-item" onclick="openPricingPanel(); closeTopProfileMenu();"><i class="fas fa-crown" style="color:#fbbf24"></i> Upgrade Plan 👑</button>
-            <button class="pm-item" onclick="openManageAccount(); closeTopProfileMenu();"><i class="fas fa-id-card"></i> Manage Account</button>
-            <div class="pm-divider"></div>
-            <button class="pm-item" onclick="addAnotherAccount(); closeTopProfileMenu();"><i class="fas fa-user-plus"></i> Add Account</button>
-            <button class="pm-item" onclick="switchAccount(); closeTopProfileMenu();"><i class="fas fa-right-left"></i> Switch Account</button>
-            <div class="pm-divider"></div>
-            <button class="pm-item" onclick="openSettings(); closeTopProfileMenu();"><i class="fas fa-gear"></i> Settings</button>
-            <button class="pm-item danger" onclick="askSignOut();"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+            <button class="pm-item" onclick="askSignOut();"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
           </div>
         </div>
       </div>
@@ -583,13 +505,7 @@ window.WK_LOGO_INLINE = function(size) {
         <div class="welcome" id="welcomeScreen">
           <div class="welcome-logo" id="welcomeLogo"></div>
           <h1>How can I help you today?</h1>
-          <p>I'm <strong>Wise King AI</strong> — <strong>truth</strong> in every answer, synced to your <strong>cloud</strong>, delivered with <strong>hope</strong>. Ask me anything.</p>
-          <div class="suggestions">
-            <div class="suggestion-card" onclick="useSuggestion('Build me a simple to-do list app in HTML')"><i class="fas fa-code"></i><div class="sc-title">Build an app</div><div class="sc-desc">"Build me a to-do list app"</div></div>
-            <div class="suggestion-card" onclick="useSuggestion('Explain how AI works in simple Hausa')"><i class="fas fa-language"></i><div class="sc-title">Explain in Hausa</div><div class="sc-desc">"How does AI work?"</div></div>
-            <div class="suggestion-card" onclick="useSuggestion('Write a short motivational story about a young Nigerian entrepreneur')"><i class="fas fa-book"></i><div class="sc-title">Write a story</div><div class="sc-desc">"A Nigerian entrepreneur"</div></div>
-            <div class="suggestion-card" onclick="useSuggestion('What is the latest news in Nigeria today?')"><i class="fas fa-newspaper"></i><div class="sc-title">Latest news</div><div class="sc-desc">"Nigeria today"</div></div>
-          </div>
+          <p>I'm <strong>Wise King AI</strong>. Ask me anything.</p>
         </div>
         <div id="messagesArea"></div>
       </div>
@@ -613,17 +529,13 @@ window.WK_LOGO_INLINE = function(size) {
           </div>
         </div>
         <input type="file" id="fileInput" accept="image/*,.pdf,.txt,.md,.json,.csv,.js,.html,.css,.py,.doc,.docx,audio/*" style="display:none" multiple onchange="handleFiles(event)">
-        <div class="input-hint">Wise King AI can make mistakes, please verify information</div>
+        <div class="input-hint">Wise King can make mistakes, please verify info</div>
       </div>
     </div>
   </main>
 </div>
 
-<!-- (All panels, modals and overlays below remain exactly as in your original file.
-     If you want, I can also paste them; they are unchanged. For brevity here, the rest of the
-     HTML after </main> up to </body> is identical to your original, EXCEPT the script section
-     which is rewritten below.) -->
-
+<!-- YOUR EXACT MODALS AND PANELS -->
 <div class="full-panel" id="musicPanel"><div class="panel-header"><div class="panel-title"><i class="fas fa-music"></i> AI Music Studio</div><button class="btn ghost" onclick="closeMusicPanel()"><i class="fas fa-arrow-left"></i> Back</button></div><div class="panel-body"><div class="panel-inner"><p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:12px">Paste lyrics OR describe the style — AI builds your song prompt.</p><textarea class="search-big" id="musicInput" rows="6" placeholder="Lyrics or music style..." style="min-height:140px;resize:vertical;font-family:inherit"></textarea><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px"><select class="input-field" id="musicGenre" style="margin-bottom:0"><option value="">Genre</option><option>Afrobeat</option><option>Amapiano</option><option>Hip-hop</option><option>R&B</option><option>Gospel</option><option>Reggae</option><option>Pop</option><option>Traditional Hausa</option></select><select class="input-field" id="musicMood" style="margin-bottom:0"><option value="">Mood</option><option>Happy</option><option>Romantic</option><option>Motivational</option><option>Spiritual</option><option>Party</option><option>Chill</option><option>Sad</option></select></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px"><button class="btn accent" style="flex:1;justify-content:center" onclick="generateMusicFromPanel()"><i class="fas fa-wand-magic-sparkles"></i> Build Prompt</button><button class="btn solid" style="flex:1;justify-content:center" onclick="generateLyricsFromPanel()"><i class="fas fa-pen-fancy"></i> Write Lyrics</button></div><div id="musicPanelResults"></div><h3 style="margin:24px 0 12px;color:var(--accent-hover);font-size:15px">My Music Library</h3><div id="musicLibraryBox"></div></div></div></div>
 
 <div class="full-panel" id="pdfChatPanel"><div class="panel-header"><div class="panel-title"><i class="fas fa-file-pdf"></i> PDF Chat</div><button class="btn ghost" onclick="closePdfChatPanel()"><i class="fas fa-arrow-left"></i> Back</button></div><div class="panel-body"><div class="panel-inner"><div class="pdf-dropzone" onclick="document.getElementById('pdfFileInput').click()"><i class="fas fa-cloud-upload-alt"></i><p><strong>Click to upload PDF</strong></p><small>Read, summarize, ask questions</small><input type="file" id="pdfFileInput" accept=".pdf" style="display:none" onchange="handlePdfUpload(event)"></div><div id="pdfFileInfo"></div><div id="pdfSummaryBox"></div><input type="text" class="search-big" id="pdfQuestionInput" placeholder="Ask anything about the PDF..." onkeydown="if(event.key==='Enter'){askPdfQuestion()}" style="margin-top:16px"><button class="btn accent" style="width:100%;justify-content:center;margin-bottom:16px" onclick="askPdfQuestion()"><i class="fas fa-question-circle"></i> Ask About PDF</button><div id="pdfChatResults"></div></div></div></div>
@@ -644,50 +556,22 @@ window.WK_LOGO_INLINE = function(size) {
 
 <div class="full-panel" id="memoryPanel"><div class="panel-header"><div class="panel-title"><i class="fas fa-brain"></i> Memory</div><button class="btn ghost" onclick="closeMemoryPanel()"><i class="fas fa-arrow-left"></i> Back</button></div><div class="panel-body"><div class="panel-inner"><div id="memoryPanelResults"></div></div></div></div>
 
-<div class="popup-menu" id="chatPopupMenu">
-  <button class="popup-menu-item" id="chatPinBtn" onclick="togglePinCurrentChat()"><i class="fas fa-thumbtack"></i> <span id="chatPinLabel">Pin chat</span></button>
-  <button class="popup-menu-item" onclick="renameCurrentChat()"><i class="fas fa-pen"></i> Rename</button>
-  <button class="popup-menu-item" onclick="deleteCurrentChat()"><i class="fas fa-trash"></i> Delete</button>
-  <button class="popup-menu-item" onclick="shareCurrentChat()"><i class="fas fa-share"></i> Share</button>
-</div>
+<div class="popup-menu" id="chatPopupMenu"><button class="popup-menu-item" id="chatPinBtn" onclick="togglePinCurrentChat()"><i class="fas fa-thumbtack"></i> <span id="chatPinLabel">Pin chat</span></button><button class="popup-menu-item" onclick="renameCurrentChat()"><i class="fas fa-pen"></i> Rename</button><button class="popup-menu-item" onclick="deleteCurrentChat()"><i class="fas fa-trash"></i> Delete</button><button class="popup-menu-item" onclick="shareCurrentChat()"><i class="fas fa-share"></i> Share</button></div>
 
 <div id="sharePopup"><div class="share-card"><div class="share-head"><div class="share-title"><i class="fas fa-share-nodes"></i> Share to</div><button class="share-close" onclick="closeSharePopup()"><i class="fas fa-times"></i></button></div><div class="share-grid"><button class="share-platform" onclick="shareTo('whatsapp')"><div class="sp-icon sp-whatsapp"><i class="fab fa-whatsapp"></i></div><div class="sp-name">WhatsApp</div></button><button class="share-platform" onclick="shareTo('facebook')"><div class="sp-icon sp-facebook"><i class="fab fa-facebook-f"></i></div><div class="sp-name">Facebook</div></button><button class="share-platform" onclick="shareTo('telegram')"><div class="sp-icon sp-telegram"><i class="fab fa-telegram-plane"></i></div><div class="sp-name">Telegram</div></button><button class="share-platform" onclick="shareTo('x')"><div class="sp-icon sp-x"><i class="fab fa-x-twitter"></i></div><div class="sp-name">X</div></button></div><button class="share-cancel" onclick="closeSharePopup()">Cancel</button></div></div>
 
 <div class="modal-bg" id="editMessageModal"><div class="modal" style="max-width:520px"><div class="modal-head"><div class="modal-title"><i class="fas fa-pen"></i> Edit message</div><button class="modal-close" onclick="closeModal('editMessageModal')"><i class="fas fa-times"></i></button></div><p class="modal-text">Editing will regenerate the AI response.</p><textarea class="input-field" id="editMessageInput" rows="4" style="min-height:120px;resize:vertical"></textarea><div class="modal-actions"><button class="btn ghost" onclick="closeModal('editMessageModal')">Cancel</button><button class="btn accent" onclick="saveEditedMessage()"><i class="fas fa-check"></i> Save & Regenerate</button></div></div></div>
-
 <div class="modal-bg" id="renameChatModal"><div class="modal" style="max-width:420px"><div class="modal-head"><div class="modal-title"><i class="fas fa-pen"></i> Rename chat</div><button class="modal-close" onclick="closeModal('renameChatModal')"><i class="fas fa-times"></i></button></div><input type="text" class="input-field" id="renameChatInput" placeholder="Enter new name" maxlength="60"><div class="modal-actions"><button class="btn ghost" onclick="closeModal('renameChatModal')">Cancel</button><button class="btn accent" onclick="saveRenamedChat()"><i class="fas fa-check"></i> Save</button></div></div></div>
-
 <div class="modal-bg" id="deleteChatModal"><div class="modal" style="max-width:380px;text-align:center;padding:32px 24px"><div style="font-size:36px;margin-bottom:12px">🗑️</div><div style="font-size:17px;font-weight:600;margin-bottom:8px">Delete this chat?</div><p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:24px">Cannot be undone.</p><div class="modal-actions" style="justify-content:center;gap:12px;margin-top:0"><button class="btn ghost" style="flex:1" onclick="closeModal('deleteChatModal')">Cancel</button><button class="btn danger" style="flex:1" onclick="confirmDeleteChat()">Delete</button></div></div></div>
-
 <div class="modal-bg" id="deleteMessageModal"><div class="modal" style="max-width:380px;text-align:center;padding:32px 24px"><div style="font-size:36px;margin-bottom:12px">🗑️</div><div style="font-size:17px;font-weight:600;margin-bottom:8px">Delete this message?</div><div class="modal-actions" style="justify-content:center;gap:12px;margin-top:24px"><button class="btn ghost" style="flex:1" onclick="closeModal('deleteMessageModal')">Cancel</button><button class="btn danger" style="flex:1" onclick="confirmDeleteMessage()">Delete</button></div></div></div>
-
 <div class="modal-bg" id="dislikeModal"><div class="modal" style="max-width:400px"><div class="modal-head"><div class="modal-title"><i class="fas fa-thumbs-down"></i> Feedback</div><button class="modal-close" onclick="closeModal('dislikeModal')"><i class="fas fa-times"></i></button></div><textarea class="input-field" id="dislikeFeedbackInput" rows="3" placeholder="What went wrong?" style="min-height:80px;resize:vertical;margin-bottom:0"></textarea><div class="modal-actions"><button class="btn ghost" onclick="closeModal('dislikeModal')">Cancel</button><button class="btn accent" onclick="submitDislikeFeedback()">Submit</button></div></div></div>
-
 <div class="modal-bg" id="signOutModal"><div class="modal" style="max-width:380px;text-align:center;padding:32px 24px"><div style="font-size:36px;margin-bottom:12px">⚠️</div><div style="font-size:17px;font-weight:600;margin-bottom:8px">Sign out?</div><p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:24px">Your session will close.</p><div class="modal-actions" style="justify-content:center;gap:12px;margin-top:0"><button class="btn ghost" style="flex:1" onclick="closeModal('signOutModal')">Cancel</button><button class="btn danger" style="flex:1" onclick="confirmSignOut()">Sign Out</button></div></div></div>
-
 <div class="modal-bg" id="vaultModal"><div class="modal"><div class="modal-head"><div class="modal-title"><i class="fas fa-shield-halved"></i> Master Vault</div><button class="modal-close" onclick="closeModal('vaultModal')"><i class="fas fa-times"></i></button></div><p class="modal-text">Permanent memories the AI will never forget.</p><div class="settings-card" style="margin-bottom:16px"><textarea class="input-field" id="vaultNewInput" rows="3" placeholder="e.g., My name is Ibrahim..." style="resize:vertical;min-height:70px;margin-bottom:10px"></textarea><button class="btn accent" style="width:100%;justify-content:center" onclick="addVaultMemory()"><i class="fas fa-plus"></i> Lock this memory</button></div><div id="vaultList"></div><div class="modal-actions"><button class="btn solid" onclick="closeModal('vaultModal')">Close</button></div></div></div>
-
 <div class="modal-bg" id="settingsModal"><div class="modal"><div class="modal-head"><div class="modal-title"><i class="fas fa-cog"></i> Settings</div><button class="modal-close" onclick="closeModal('settingsModal')"><i class="fas fa-times"></i></button></div><div class="settings-group"><div class="settings-group-title"><i class="fas fa-palette"></i> Appearance</div><div class="settings-card"><div class="toggle-row"><div class="toggle-label">Light Mode</div><div class="toggle-switch" id="lightModeToggle" onclick="toggleLightMode()"></div></div></div></div><div class="settings-group"><div class="settings-group-title"><i class="fas fa-sliders-h"></i> Features</div><div class="settings-card"><div class="toggle-row"><div class="toggle-label">Enable Web Search</div><div class="toggle-switch on" id="webSearchToggle" onclick="toggleWebSearchSetting()"></div></div><div style="height:1px;background:var(--border-subtle);margin:10px 0"></div><div class="toggle-row"><div class="toggle-label">Enable Memory</div><div class="toggle-switch on" id="memoryToggle" onclick="toggleMemorySetting()"></div></div></div></div><div class="settings-group"><div class="settings-group-title"><i class="fas fa-key"></i> API Keys</div><div class="settings-card"><input type="password" class="input-field" id="apiKeyInput" placeholder="Gemini API key" autocomplete="off"><input type="password" class="input-field" id="deepseekKeyInput" placeholder="DeepSeek API key (fallback)" autocomplete="off" style="margin-bottom:0"></div></div><div class="settings-group"><div class="settings-group-title"><i class="fas fa-robot"></i> AI Model</div><div class="settings-card"><select class="input-field" id="modelSelect" style="margin-bottom:0"><option value="gemini-2.5-flash">Gemini 2.5 Flash — Instant ⚡</option><option value="gemini-2.0-flash">Gemini 2.0 Flash</option><option value="gemini-1.5-flash">Gemini 1.5 Flash</option></select></div></div><div class="modal-actions" style="justify-content:space-between"><button class="btn ghost" style="color:#f87171" onclick="closeModal('settingsModal'); setTimeout(()=>askSignOut(),150);"><i class="fas fa-sign-out-alt"></i> Sign out</button><button class="btn accent" onclick="saveSettings()">Save</button></div></div></div>
-
 <div id="aiCallOverlay"><div style="text-align:center;margin-top:40px"><div style="width:140px;height:140px;border-radius:50%;background:var(--accent-gradient);display:flex;align-items:center;justify-content:center;font-size:64px;margin:0 auto 20px;box-shadow:0 0 60px rgba(99,102,241,0.6);animation:pulseCall 2s infinite">👑</div><div style="font-size:22px;font-weight:700;color:white">Wise King AI</div><div style="font-size:14px;color:#a1a1aa;margin-top:6px" id="callStatus">Starting...</div></div><div style="flex:1;display:flex;align-items:center;justify-content:center;width:100%;max-width:600px;padding:20px"><div style="color:white;text-align:center;width:100%"><div id="callUserText" style="font-size:14px;color:#a1a1aa;margin-bottom:14px;min-height:24px;font-style:italic"></div><div id="callAIText" style="font-size:17px;font-weight:500;line-height:1.6;min-height:60px"></div></div></div><div style="display:flex;gap:24px;align-items:center;margin-bottom:40px"><button onclick="toggleCallMute()" id="callMuteBtn" style="width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;color:white;font-size:22px;cursor:pointer"><i class="fas fa-microphone"></i></button><button onclick="endAICall()" style="width:80px;height:80px;border-radius:50%;background:#ef4444;border:none;color:white;font-size:28px;cursor:pointer;box-shadow:0 8px 30px rgba(239,68,68,0.5)"><i class="fas fa-phone-slash"></i></button><button onclick="toggleCallSpeaker()" id="callSpeakerBtn" style="width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;color:white;font-size:22px;cursor:pointer"><i class="fas fa-volume-up"></i></button></div></div>
-
 <div class="toast" id="toast"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
-<script src="https://js.paystack.co/v1/inline.js"></script>
-
 <script>
-/* ============ FAST BOOT: Show app instantly ============ */
 window.__wkCodeBlocks = window.__wkCodeBlocks || {};
 function fallbackCopy(text){try{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.select();var ok=document.execCommand('copy');ta.remove();return !!ok;}catch(e){return false;}}
 function wkCopyToClipboard(text){return new Promise(function(resolve){try{if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(function(){resolve(true);}).catch(function(){resolve(fallbackCopy(text));});}else{resolve(fallbackCopy(text));}}catch(e){resolve(fallbackCopy(text));}});}
@@ -698,34 +582,22 @@ window.wkRunCode=function(blockId){var code=(window.__wkCodeBlocks&&window.__wkC
 function highlightCodeBlocks(){if(typeof Prism==='undefined')return;document.querySelectorAll('.md pre code:not([data-highlighted])').forEach(function(block){try{Prism.highlightElement(block);}catch(e){}});}
 window.highlightCodeBlocks=highlightCodeBlocks;
 
-/* ============ INSTANT UNLOCK (no waiting for Firebase) ============ */
+/* ============ INSTANT BOOT: Show app instantly & Inject Logos ============ */
 (function instantBoot(){
-  // Inject the sharp logo into every placeholder immediately
-  var logo = window.WK_LOGO_INLINE(36);
-  ['brandLogo','loginLogo','welcomeLogo','wpAvatar'].forEach(function(id){
-    var el = document.getElementById(id);
-    if(el){
-      var size = (id==='loginLogo')?72:(id==='welcomeLogo')?80:(id==='wpAvatar')?88:36;
-      el.innerHTML = window.WK_LOGO_INLINE(size);
-    }
-  });
+  var logo36 = window.WK_LOGO_INLINE(36);
+  var logo72 = window.WK_LOGO_INLINE(72);
+  var logo80 = window.WK_LOGO_INLINE(80);
+  var logo88 = window.WK_LOGO_INLINE(88);
+  
+  ['brandLogo'].forEach(function(id){var el=document.getElementById(id); if(el) el.innerHTML = logo36;});
+  ['loginLogo'].forEach(function(id){var el=document.getElementById(id); if(el) el.innerHTML = logo72;});
+  ['welcomeLogo'].forEach(function(id){var el=document.getElementById(id); if(el) el.innerHTML = logo80;});
+  ['wpAvatar'].forEach(function(id){var el=document.getElementById(id); if(el) el.innerHTML = logo88;});
 
-  // If user has been here before (or is guest), open the app NOW — no login screen
   if(localStorage.getItem('wk_logged_in')==='1' || localStorage.getItem('wk_guest_mode')==='1'){
     document.getElementById('mainApp').style.opacity = '1';
     document.getElementById('loginScreen').style.display = 'none';
-    // Set cloud pill
-    var pill = document.getElementById('cloudPill');
-    var text = document.getElementById('cloudPillText');
-    if(pill && text){
-      if(localStorage.getItem('wk_guest_mode')==='1'){
-        pill.classList.add('local'); text.textContent = 'Local';
-      } else {
-        pill.classList.remove('local'); text.textContent = 'Cloud ✓';
-      }
-    }
   } else {
-    // First visit — show login, hide app
     document.getElementById('loginScreen').style.display = 'flex';
     document.getElementById('mainApp').style.opacity = '0';
     document.getElementById('mainApp').style.display = 'none';
@@ -733,17 +605,11 @@ window.highlightCodeBlocks=highlightCodeBlocks;
 })();
 </script>
 
-<!-- ============ FIREBASE ============ -->
+<!-- ============ FIREBASE (MOBILE FIXED) ============ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-  import { 
-    getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged,
-    setPersistence, browserLocalPersistence,
-    createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail
-  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-  import { 
-    getFirestore, doc, getDoc, setDoc, serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, signInWithRedirect, getRedirectResult, setPersistence, browserLocalPersistence, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDJgzRfoLYzttGpoXr8JzKEqLA19y2V4fU",
@@ -757,19 +623,26 @@ window.highlightCodeBlocks=highlightCodeBlocks;
   const auth = getAuth(app);
   const db = getFirestore(app);
   const provider = new GoogleAuthProvider();
-  provider.setCustomParameters({ prompt: 'select_account' });
   setPersistence(auth, browserLocalPersistence).catch(() => {});
 
   window.WK_CLOUD = {
-    async loadUserData(uid) {
-      try { const ref = doc(db, 'users', uid); const snap = await getDoc(ref); return snap.exists() ? snap.data() : null; }
-      catch (e) { return null; }
-    },
-    async saveUserData(uid, data) {
-      try { await setDoc(doc(db, 'users', uid), { ...data, updatedAt: serverTimestamp() }, { merge: true }); return true; }
-      catch (e) { return false; }
+    async loadUserData(uid) { try { const ref = doc(db, 'users', uid); const snap = await getDoc(ref); return snap.exists() ? snap.data() : null; } catch (e) { return null; } },
+    async saveUserData(uid, data) { try { await setDoc(doc(db, 'users', uid), { ...data, updatedAt: serverTimestamp() }, { merge: true }); return true; } catch (e) { return false; } }
+  };
+
+  window.signInWithGoogle = function() {
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      signInWithRedirect(auth, provider);
+    } else {
+      signInWithPopup(auth, provider).then((result) => {
+        unlockApp(result.user.displayName, result.user.email, result.user.photoURL);
+      }).catch(console.error);
     }
   };
+
+  getRedirectResult(auth).then((result) => {
+    if (result && result.user) unlockApp(result.user.displayName, result.user.email, result.user.photoURL);
+  }).catch(console.error);
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -784,98 +657,18 @@ window.highlightCodeBlocks=highlightCodeBlocks;
         if (Array.isArray(cloud.chats)) { localStorage.setItem('wk_chats', JSON.stringify(cloud.chats)); try { chats = cloud.chats; } catch(e) {} }
         if (Array.isArray(cloud.vault)) localStorage.setItem('wk_vault', JSON.stringify(cloud.vault));
         if (Array.isArray(cloud.memory)) localStorage.setItem('wk_cross_memory', JSON.stringify(cloud.memory));
-        if (Array.isArray(cloud.library)) localStorage.setItem('wk_library', JSON.stringify(cloud.library));
-        if (Array.isArray(cloud.projects)) localStorage.setItem('wk_projects', JSON.stringify(cloud.projects));
-        if (Array.isArray(cloud.music)) localStorage.setItem('wk_music', JSON.stringify(cloud.music));
       }
 
-      if (typeof unlockApp === 'function') unlockApp(user.displayName || 'Wise King User', user.email, user.photoURL);
+      if (typeof unlockApp === 'function') unlockApp(user.displayName, user.email, user.photoURL);
       if (typeof loadChatsFromLocalStorage === 'function') loadChatsFromLocalStorage();
     }
   });
 
-  window.signInWithGoogle = function() {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        localStorage.setItem('wk_logged_in', '1');
-        localStorage.setItem('wk_user_name', user.displayName || 'Wise King User');
-        localStorage.setItem('wk_user_email', user.email || '');
-        localStorage.setItem('wk_user_uid', user.uid);
-        localStorage.removeItem('wk_guest_mode');
-        window.showToast('Welcome, ' + (user.displayName || 'Wise King User') + '! 🎉');
-      })
-      .catch((error) => {
-        if (["auth/cancelled-popup-request","auth/popup-closed-by-user","auth/user-cancelled"].includes(error.code)) return;
-        if (typeof showAuthError === 'function') showAuthError("Login failed: " + error.message);
-      });
-  };
-
-  window.emailSignIn = function() {
-    const email = document.getElementById('signInEmail').value.trim();
-    const password = document.getElementById('signInPassword').value.trim();
-    if (!email || !password) return showAuthError("Please enter both email and password.");
-    const btn = document.getElementById('signInBtn'); const orig = btn.innerHTML;
-    btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
-    signInWithEmailAndPassword(auth, email, password)
-      .then((uc) => {
-        const user = uc.user;
-        localStorage.setItem('wk_logged_in', '1');
-        localStorage.setItem('wk_user_name', user.displayName || email.split('@')[0]);
-        localStorage.setItem('wk_user_email', user.email);
-        localStorage.setItem('wk_user_uid', user.uid);
-        localStorage.removeItem('wk_guest_mode');
-        window.showToast('Welcome back! 🎉');
-      })
-      .catch((error) => {
-        let msg = "Login failed. ";
-        if (error.code === 'auth/user-not-found') msg = "No account found.";
-        else if (error.code === 'auth/wrong-password') msg = "Incorrect password.";
-        else if (error.code === 'auth/invalid-credential') msg = "Wrong email or password.";
-        else msg += error.message;
-        showAuthError(msg); btn.disabled = false; btn.innerHTML = orig;
-      });
-  };
-
-  window.emailSignUp = function() {
-    const name = document.getElementById('signUpName').value.trim();
-    const email = document.getElementById('signUpEmail').value.trim();
-    const password = document.getElementById('signUpPassword').value.trim();
-    if (!name || !email || !password) return showAuthError("Please fill in all fields.");
-    if (password.length < 6) return showAuthError("Password must be at least 6 characters.");
-    const btn = document.getElementById('signUpBtn'); const orig = btn.innerHTML;
-    btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((uc) => {
-        const user = uc.user;
-        localStorage.setItem('wk_logged_in', '1');
-        localStorage.setItem('wk_user_name', name);
-        localStorage.setItem('wk_user_email', user.email);
-        localStorage.setItem('wk_user_uid', user.uid);
-        localStorage.removeItem('wk_guest_mode');
-        window.showToast('Account created! Welcome, ' + name + ' 🎉');
-      })
-      .catch((error) => {
-        let msg = "Sign up failed. ";
-        if (error.code === 'auth/email-already-in-use') msg = "This email is already registered.";
-        else if (error.code === 'auth/weak-password') msg = "Password too weak.";
-        else msg += error.message;
-        showAuthError(msg); btn.disabled = false; btn.innerHTML = orig;
-      });
-  };
-
-  window.sendPasswordReset = function() {
-    const email = document.getElementById('resetEmail').value.trim();
-    if (!email) return showAuthError("Please enter your email.");
-    const btn = document.getElementById('resetBtn'); const orig = btn.innerHTML;
-    btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    sendPasswordResetEmail(auth, email)
-      .then(() => { showAuthSuccess("Reset email sent!"); btn.disabled = false; btn.innerHTML = orig; })
-      .catch((error) => { showAuthError("Error: " + error.message); btn.disabled = false; btn.innerHTML = orig; });
-  };
-
-  window.addAnotherAccount = function() { closeTopProfileMenu(); provider.setCustomParameters({ prompt: 'select_account' }); setTimeout(() => window.signInWithGoogle(), 80); };
-  window.switchAccount = function() { closeTopProfileMenu(); provider.setCustomParameters({ prompt: 'select_account' }); setTimeout(() => window.signInWithGoogle(), 80); };
+  window.emailSignIn = function() { showToast("Email login coming soon. Use Google or Guest."); };
+  window.emailSignUp = function() { showToast("Email signup coming soon. Use Google or Guest."); };
+  window.sendPasswordReset = function() { showToast("Coming soon."); };
+  window.addAnotherAccount = function() { closeTopProfileMenu(); setTimeout(() => window.signInWithGoogle(), 80); };
+  window.switchAccount = function() { closeTopProfileMenu(); setTimeout(() => window.signInWithGoogle(), 80); };
 
   window.askSignOut = function() {
     closeTopProfileMenu();
@@ -906,11 +699,13 @@ window.highlightCodeBlocks=highlightCodeBlocks;
     try { renderChats(); renderMessages(); } catch(e) {}
     try { switchAuthTab('signin'); } catch(e) {}
   };
+});
 </script>
 
+<!-- ============ CORE LOGIC ============ -->
 <script>
-// ============ CORE STATE ============
 const ENV_GEMINI_KEY = 'AIzaSyDJgzRfoLYzttGpoXr8JzKEqLA19y2V4fU';
+const ENV_DEEPSEEK_KEY = 'sk-fb639a4c27894785af98086afedbe800';
 
 const SYSTEM_PROMPT = `
 # WISE KING AI
@@ -1332,7 +1127,7 @@ When the user asks for one 10-second scene, generate one complete
 10-second prompt, not ten separate prompts.
 
 Unless the user requests otherwise, prioritize:
-ACTION FIRST → REACTION → SHORT DIALOGUE → NATURAL END.
+ACTION FIRST → REACTION → SHORT DIALOGUE → NATURAL END WITH (FADE OUT).
 
 Keep scenes realistic for the selected generator's limitations.
 
@@ -1779,8 +1574,8 @@ Benefit in every story.
 
 WISE KING INDUSTRY — NIGERIA 🇳🇬
 WORLDWIDE PROFESSIONAL INTELLIGENCE 🌍
-`;
-  
+`;  
+
 let chats = [], activeChatId = null;
 let uploadedImages = [];
 let isSending = false, currentAbortController = null;
@@ -1805,7 +1600,6 @@ let currentPdfName = '';
 let currentChart = null;
 let currentDownloadFilter = 'all';
 
-// ============ AUTH HELPERS ============
 function showAuthError(msg) { const el = document.getElementById('authError'); if (!el) return; el.textContent = msg; el.classList.add('show'); document.getElementById('authSuccess')?.classList.remove('show'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 6000); }
 function showAuthSuccess(msg) { const el = document.getElementById('authSuccess'); if (!el) return; el.textContent = msg; el.classList.add('show'); document.getElementById('authError')?.classList.remove('show'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 6000); }
 function clearAuthMessages() { document.getElementById('authError')?.classList.remove('show'); document.getElementById('authSuccess')?.classList.remove('show'); }
@@ -1830,8 +1624,16 @@ function unlockApp(name, email, photoURL) {
   if (email) { document.getElementById('settingsUserEmail').textContent = email; document.getElementById('pmEmail').textContent = email; }
   const savedAvatar = localStorage.getItem('wk_user_avatar') || photoURL;
   if (savedAvatar) applyAvatar(savedAvatar);
+  
+  // Show welcome popup
+  document.getElementById('wpName').textContent = (name || 'Friend').split(' ')[0];
+  document.getElementById('welcomePopup').classList.add('show');
+  setTimeout(() => closeWelcomePopup(), 5000);
 }
 window.unlockApp = unlockApp;
+
+function closeWelcomePopup() { document.getElementById('welcomePopup')?.classList.remove('show'); }
+window.closeWelcomePopup = closeWelcomePopup;
 
 function skipLoginAsGuest() {
   clearAuthMessages();
@@ -1844,7 +1646,6 @@ function skipLoginAsGuest() {
 }
 window.skipLoginAsGuest = skipLoginAsGuest;
 
-// ============ CHATS ============
 function loadChatsFromLocalStorage() {
   try { const s = localStorage.getItem('wk_chats'); if (s) chats = JSON.parse(s); } catch(e) { chats = []; }
   if (!Array.isArray(chats) || !chats.length) chats = [{ id:'chat-'+Date.now(), title:'New chat', messages:[], createdAt:Date.now() }];
@@ -1935,7 +1736,6 @@ function shareTo(platform) {
 }
 document.addEventListener('click', (e) => { const menu = document.getElementById('chatPopupMenu'); if (!menu || !menu.classList.contains('show')) return; if (e.target.closest('#chatPopupMenu')) return; if (e.target.closest('.chat-menu-btn')) return; closeChatMenu(); }, true);
 
-// ============ HELPERS ============
 function escapeHtml(t) { if (t === null || t === undefined) return ''; const d = document.createElement('div'); d.textContent = String(t); return d.innerHTML; }
 window.escapeHtml = escapeHtml;
 function linkify(t) { return t.replace(/(https?:\/\/[^\s)]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>'); }
@@ -1953,53 +1753,86 @@ function renderMarkdown(src) {
 window.renderMarkdown = renderMarkdown;
 function buildContentHtml(msg) { return `<div class="md">${renderMarkdown(msg.content || '')}</div>`; }
 function handleInputChange() { const input = document.getElementById('messageInput'), btn = document.getElementById('sendBtn'); const has = input.value.trim().length > 0 || uploadedImages.length > 0; btn.classList.toggle('hidden', !has && !isSending); input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 200) + 'px'; }
+window.handleInputChange = handleInputChange;
 function handleKeyDown(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); if (!isSending) sendMessage(); } }
+window.handleKeyDown = handleKeyDown;
 function handleSendOrCancel() { if (isSending) cancelRequest(); else sendMessage(); }
+window.handleSendOrCancel = handleSendOrCancel;
 function cancelRequest() { if (currentAbortController) currentAbortController.abort(); isSending = false; }
 async function handleFiles(e) { const files = Array.from(e.target.files || []); for (const file of files) { if (file.type.startsWith('image/')) { await new Promise(r => { const fr = new FileReader(); fr.onload = ev => { uploadedImages.push(ev.target.result); r(); }; fr.readAsDataURL(file); }); } else if (file.type === 'application/pdf') { await handlePdfUpload({target: {files: [file]}}); } } updatePreview(); e.target.value = ''; }
+window.handleFiles = handleFiles;
 function updatePreview() { const area = document.getElementById('previewArea'); area.innerHTML = ''; area.classList.toggle('show', uploadedImages.length > 0); uploadedImages.forEach((img, i) => { const d = document.createElement('div'); d.className = 'preview-item'; d.innerHTML = `<img src="${img}"><button class="remove" onclick="removeImg(${i})">×</button>`; area.appendChild(d); }); }
+window.updatePreview = updatePreview;
 function removeImg(i) { uploadedImages.splice(i,1); updatePreview(); handleInputChange(); }
+window.removeImg = removeImg;
 function insertQuickPrompt(t) { document.getElementById('messageInput').value = t; handleInputChange(); sendMessage(); }
+window.insertQuickPrompt = insertQuickPrompt;
 function useSuggestion(t) { insertQuickPrompt(t); }
+window.useSuggestion = useSuggestion;
 function filterChats() { const q = document.getElementById('searchInput').value.toLowerCase(); document.querySelectorAll('#chatsList .chat-item').forEach(el => { const t = el.querySelector('.chat-title')?.textContent.toLowerCase() || ''; el.style.display = t.includes(q) ? '' : 'none'; }); }
+window.filterChats = filterChats;
 function goToWelcome() { activeChatId = null; renderMessages(); }
+window.goToWelcome = goToWelcome;
 function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+window.closeModal = closeModal;
 function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 3000); }
 window.showToast = showToast;
 function toggleSection(h) { h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
+window.toggleSection = toggleSection;
 function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+window.toggleSidebar = toggleSidebar;
 function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); }
+window.closeSidebar = closeSidebar;
 function toggleTopProfileMenu(e) { e.stopPropagation(); document.getElementById('topProfileMenu').classList.toggle('show'); }
+window.toggleTopProfileMenu = toggleTopProfileMenu;
 function closeTopProfileMenu() { document.getElementById('topProfileMenu').classList.remove('show'); }
+window.closeTopProfileMenu = closeTopProfileMenu;
 document.addEventListener('click', e => { if (!e.target.closest('.top-profile-container')) closeTopProfileMenu(); });
 function applyAvatar(data) { ['sidebarAvatar','settingsAvatar','topProfileAvatar','pmAvatar'].forEach(id => { const el = document.getElementById(id); if (el) { if (data.startsWith('http') || data.startsWith('data:')) el.innerHTML = `<img src="${data}">`; else el.textContent = data; } }); }
+window.applyAvatar = applyAvatar;
 function handleProfilePhotoUpload(e) { const f = e.target.files[0]; if (!f) return; const fr = new FileReader(); fr.onload = ev => { localStorage.setItem('wk_user_avatar', ev.target.result); applyAvatar(ev.target.result); showToast('Photo updated'); }; fr.readAsDataURL(f); }
+window.handleProfilePhotoUpload = handleProfilePhotoUpload;
 
-// ============ SETTINGS ============
 function openSettings() { document.getElementById('settingsModal').classList.add('show'); closeSidebar(); const k1 = localStorage.getItem('wk_api_key'); if (k1) document.getElementById('apiKeyInput').value = k1; const k2 = localStorage.getItem('wk_replicate_key'); if (k2) document.getElementById('replicateKeyInput').value = k2; const k3 = localStorage.getItem('wk_suno_key'); if (k3) document.getElementById('sunoKeyInput').value = k3; }
+window.openSettings = openSettings;
 function saveSettings() { 
   const g = document.getElementById('apiKeyInput').value.trim(); if (g) localStorage.setItem('wk_api_key', g); else localStorage.removeItem('wk_api_key'); 
   const r = document.getElementById('replicateKeyInput').value.trim(); if (r) localStorage.setItem('wk_replicate_key', r); else localStorage.removeItem('wk_replicate_key'); 
   const s = document.getElementById('sunoKeyInput').value.trim(); if (s) localStorage.setItem('wk_suno_key', s); else localStorage.removeItem('wk_suno_key'); 
   const m = document.getElementById('modelSelect').value; localStorage.setItem('wk_model', m); updateModelBadge(); closeModal('settingsModal'); showToast('✅ Saved'); 
 }
+window.saveSettings = saveSettings;
 function updateModelBadge() { const m = localStorage.getItem('wk_model') || 'gemini-3.5-flash-lite'; let label = 'Gemini 3.5 Flash-lite'; if (m.includes('3.1-flash')) label = 'Gemini 3.1 Flash'; else if (m.includes('2.5-flash')) label = 'Gemini 2.5 Flash'; document.getElementById('modelBadgeText').textContent = label; }
+window.updateModelBadge = updateModelBadge;
 function applyTheme(color) { document.documentElement.style.setProperty('--accent', color); document.querySelectorAll('.theme-swatch').forEach(s => s.classList.toggle('active', s.dataset.color === color)); }
+window.applyTheme = applyTheme;
 function toggleLightMode() { document.body.classList.toggle('light-mode'); const isLight = document.body.classList.contains('light-mode'); localStorage.setItem('wk_light_mode', isLight ? '1' : '0'); document.getElementById('lightModeToggle')?.classList.toggle('on', isLight); showToast(isLight ? '☀️ Light Mode' : '🌙 Dark Mode'); }
+window.toggleLightMode = toggleLightMode;
 function loadTheme() { if (localStorage.getItem('wk_light_mode') === '1') { document.body.classList.add('light-mode'); document.getElementById('lightModeToggle')?.classList.add('on'); } }
+window.loadTheme = loadTheme;
 function getWebSearchEnabled() { return localStorage.getItem('wk_web_search') !== '0'; }
+window.getWebSearchEnabled = getWebSearchEnabled;
 function setWebSearchEnabled(e) { localStorage.setItem('wk_web_search', e ? '1' : '0'); document.getElementById('webSearchToggle')?.classList.toggle('on', e); }
+window.setWebSearchEnabled = setWebSearchEnabled;
 function toggleWebSearchSetting() { const n = !getWebSearchEnabled(); setWebSearchEnabled(n); showToast(n ? '🌐 Web ON' : '🚫 OFF'); }
+window.toggleWebSearchSetting = toggleWebSearchSetting;
 function getMemoryEnabled() { return localStorage.getItem('wk_memory_on') !== '0'; }
+window.getMemoryEnabled = getMemoryEnabled;
 function setMemoryEnabled(e) { localStorage.setItem('wk_memory_on', e ? '1' : '0'); document.getElementById('memoryToggle')?.classList.toggle('on', e); }
+window.setMemoryEnabled = setMemoryEnabled;
 function toggleMemorySetting() { const n = !getMemoryEnabled(); setMemoryEnabled(n); showToast(n ? '🧠 Memory ON' : '🚫 OFF'); }
+window.toggleMemorySetting = toggleMemorySetting;
 function getStreamingEnabled() { return localStorage.getItem('wk_streaming_on') !== '0'; }
+window.getStreamingEnabled = getStreamingEnabled;
 function setStreamingEnabled(e) { localStorage.setItem('wk_streaming_on', e ? '1' : '0'); document.getElementById('streamingToggle')?.classList.toggle('on', e); }
+window.setStreamingEnabled = setStreamingEnabled;
 function toggleStreamingSetting() { const n = !getStreamingEnabled(); setStreamingEnabled(n); showToast(n ? '⚡ Streaming ON' : '🚫 OFF'); }
+window.toggleStreamingSetting = toggleStreamingSetting;
 
-// ============ THINK / SEARCH / VOICE ============
 function toggleThinkMode() { thinkMode = !thinkMode; document.getElementById('chipThink').classList.toggle('active', thinkMode); showToast(thinkMode ? '🧠 Deep thinking ON' : '🧠 OFF'); }
+window.toggleThinkMode = toggleThinkMode;
 function toggleSearchMode() { searchMode = !searchMode; document.getElementById('chipSearch').classList.toggle('active', searchMode); showToast(searchMode ? '🌐 Search ON' : '🌐 OFF'); }
+window.toggleSearchMode = toggleSearchMode;
 function toggleVoiceMode() {
   voiceMode = !voiceMode;
   const box = document.getElementById('gkInputBox');
@@ -2007,8 +1840,8 @@ function toggleVoiceMode() {
   if (voiceMode) { box.classList.add('voice-mode'); if (micIcon) micIcon.className = 'fas fa-keyboard'; showToast('🎙️ Voice mode'); }
   else { box.classList.remove('voice-mode'); if (micIcon) micIcon.className = 'fas fa-microphone'; setTimeout(() => document.getElementById('messageInput').focus(), 100); showToast('⌨️ Keyboard mode'); }
 }
+window.toggleVoiceMode = toggleVoiceMode;
 
-// ============ VOICE RECOGNITION (Multi-Language) ============
 const VOICE_LANGS = {
   'en-NG': '🇳🇬 English (Nigeria)', 'en-US': '🇺🇸 English (US)', 'en-GB': '🇬🇧 English (UK)',
   'ha-NG': '🇳🇬 Hausa', 'ar-SA': '🇸🇦 Arabic', 'fr-FR': '🇫🇷 French',
@@ -2092,32 +1925,48 @@ function initHoldToSpeak() {
   pill.addEventListener('touchend', stopRec, {passive:false});
   pill.addEventListener('touchcancel', stopRec, {passive:false});
 }
+window.initHoldToSpeak = initHoldToSpeak;
 
-// ============ VAULT ============
 function loadVault() { try { vaultMemories = JSON.parse(localStorage.getItem('wk_vault') || '[]'); } catch(e) { vaultMemories = []; } updateVaultBadge(); }
+window.loadVault = loadVault;
 function saveVault() { localStorage.setItem('wk_vault', JSON.stringify(vaultMemories)); updateVaultBadge(); if (window.WK_CLOUD && localStorage.getItem('wk_user_uid')) window.WK_CLOUD.saveUserData(localStorage.getItem('wk_user_uid'), { vault: vaultMemories }); }
+window.saveVault = saveVault;
 function updateVaultBadge() { const b = document.getElementById('vaultCountBadge'); if (b) b.textContent = vaultMemories.length; }
+window.updateVaultBadge = updateVaultBadge;
 function openVault() { document.getElementById('vaultModal').classList.add('show'); renderVault(); }
+window.openVault = openVault;
 function renderVault() { const list = document.getElementById('vaultList'); if (!list) return; if (!vaultMemories.length) { list.innerHTML = '<div class="vault-empty">No locked memories yet.</div>'; return; } list.innerHTML = vaultMemories.map((m, i) => `<div class="vault-item"><div class="vi-text">${escapeHtml(m)}</div><button class="vi-del" onclick="deleteVaultMemory(${i})"><i class="fas fa-trash"></i></button></div>`).join(''); }
+window.renderVault = renderVault;
 function addVaultMemory() { const input = document.getElementById('vaultNewInput'); const text = input.value.trim(); if (!text) return showToast('Type a memory first'); vaultMemories.unshift(text); saveVault(); renderVault(); input.value = ''; showToast('🔒 Locked'); }
+window.addVaultMemory = addVaultMemory;
 function deleteVaultMemory(i) { vaultMemories.splice(i, 1); saveVault(); renderVault(); showToast('Removed'); }
+window.deleteVaultMemory = deleteVaultMemory;
 
-// ============ MEMORY ============
 function loadCrossChatMemory() { try { crossChatMemory = JSON.parse(localStorage.getItem('wk_cross_memory') || '[]'); } catch(e) { crossChatMemory = []; } updateMemoryBadge(); }
+window.loadCrossChatMemory = loadCrossChatMemory;
 function saveCrossChatMemory() { localStorage.setItem('wk_cross_memory', JSON.stringify(crossChatMemory.slice(0, 100))); updateMemoryBadge(); if (window.WK_CLOUD && localStorage.getItem('wk_user_uid')) window.WK_CLOUD.saveUserData(localStorage.getItem('wk_user_uid'), { memory: crossChatMemory.slice(0, 100) }); }
+window.saveCrossChatMemory = saveCrossChatMemory;
 function updateMemoryBadge() { const b = document.getElementById('memoryCountBadge'); if (b) b.textContent = crossChatMemory.length; }
+window.updateMemoryBadge = updateMemoryBadge;
 function openMemoryPanel() { document.getElementById('memoryPanel').classList.add('show'); closeSidebar(); renderMemoryPanel(); }
+window.openMemoryPanel = openMemoryPanel;
 function closeMemoryPanel() { document.getElementById('memoryPanel').classList.remove('show'); }
+window.closeMemoryPanel = closeMemoryPanel;
 function renderMemoryPanel() { const box = document.getElementById('memoryPanelResults'); if (!box) return; if (!crossChatMemory.length) { box.innerHTML = '<div class="result-card"><p>No memories yet.</p></div>'; return; } box.innerHTML = crossChatMemory.map((m, i) => `<div class="memory-item"><div class="mi-text">${escapeHtml(m)}</div><button class="mi-del" onclick="deleteMemoryItem(${i})"><i class="fas fa-trash"></i></button></div>`).join(''); }
+window.renderMemoryPanel = renderMemoryPanel;
 function deleteMemoryItem(i) { crossChatMemory.splice(i, 1); saveCrossChatMemory(); renderMemoryPanel(); }
+window.deleteMemoryItem = deleteMemoryItem;
 async function extractMemoryNow() { showToast('🧠 Analyzing...'); setTimeout(() => showToast('✅ Updated'), 800); }
+window.extractMemoryNow = extractMemoryNow;
 
-// ============ LIBRARY / PROJECTS / MUSIC ============
 function loadLibrary() { try { library = JSON.parse(localStorage.getItem('wk_library') || '[]'); } catch(e) { library = []; } }
+window.loadLibrary = loadLibrary;
 function saveToLibrary(item) { if (!item.type) item.type = 'project'; library.unshift(item); localStorage.setItem('wk_library', JSON.stringify(library.slice(0, 500))); }
 window.saveToLibrary = saveToLibrary;
 function openLibraryPanel() { document.getElementById('libraryPanel').classList.add('show'); closeSidebar(); renderLibrary(); }
+window.openLibraryPanel = openLibraryPanel;
 function closeLibraryPanel() { document.getElementById('libraryPanel').classList.remove('show'); }
+window.closeLibraryPanel = closeLibraryPanel;
 function renderLibrary() { 
   const box = document.getElementById('libraryPanelResults'); if (!box) return; 
   if (!library.length) { box.innerHTML = '<div class="result-card"><p>No items yet.</p></div>'; return; }
@@ -2142,29 +1991,37 @@ function renderLibrary() {
 window.renderLibrary = renderLibrary;
 
 function loadProjects() { try { projects = JSON.parse(localStorage.getItem('wk_projects') || '[]'); } catch(e) { projects = []; } updateProjectBadge(); }
+window.loadProjects = loadProjects;
 function saveProjects() { localStorage.setItem('wk_projects', JSON.stringify(projects)); updateProjectBadge(); }
+window.saveProjects = saveProjects;
 function updateProjectBadge() { const badge = document.getElementById('projectCountBadge'); if (badge) badge.textContent = projects.length; }
+window.updateProjectBadge = updateProjectBadge;
 function openProjectsPanel() { document.getElementById('libraryPanel').classList.add('show'); closeSidebar(); renderProjects(); }
+window.openProjectsPanel = openProjectsPanel;
 function renderProjects() { const list = document.getElementById('libraryPanelResults'); if (!list) return; if (!projects.length) { list.innerHTML = '<div class="result-card" style="text-align:center;padding:60px 20px"><div style="font-size:48px;margin-bottom:16px">📁</div><h4 style="justify-content:center">No projects yet</h4><button class="btn accent" onclick="createNewProject()"><i class="fas fa-plus"></i> Create Project</button></div>'; return; } list.innerHTML = projects.map(p => `<div class="result-card"><h4>📁 ${escapeHtml(p.name)}</h4><p>${escapeHtml(p.description || '')}</p></div>`).join(''); }
+window.renderProjects = renderProjects;
 function createNewProject() { const name = prompt('Project name:'); if (!name) return; projects.unshift({ id: 'proj-' + Date.now(), name: name.trim(), description: '', status: 'active', createdAt: Date.now() }); saveProjects(); renderProjects(); showToast('✅ Created'); }
+window.createNewProject = createNewProject;
 
 function loadMusic() { try { musicLibrary = JSON.parse(localStorage.getItem('wk_music') || '[]'); } catch(e) { musicLibrary = []; } updateMusicBadge(); }
+window.loadMusic = loadMusic;
 function saveMusic() { localStorage.setItem('wk_music', JSON.stringify(musicLibrary.slice(0, 200))); updateMusicBadge(); if (window.WK_CLOUD && localStorage.getItem('wk_user_uid')) window.WK_CLOUD.saveUserData(localStorage.getItem('wk_user_uid'), { music: musicLibrary.slice(0, 200) }); }
+window.saveMusic = saveMusic;
 function updateMusicBadge() { const b = document.getElementById('musicCountBadge'); if (b) b.textContent = musicLibrary.length; }
+window.updateMusicBadge = updateMusicBadge;
 
-// ============ EXPORT / IMPORT ============
 function exportData() { const data = { version: 1, chats, vault: vaultMemories, memory: crossChatMemory, library, projects, music: musicLibrary }; const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `wiseking-backup-${new Date().toISOString().slice(0,10)}.json`; a.click(); URL.revokeObjectURL(url); showToast('✅ Exported'); }
+window.exportData = exportData;
 function importData(e) { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = (ev) => { try { const data = JSON.parse(ev.target.result); if (Array.isArray(data.chats)) { chats = data.chats; saveChats(); renderMessages(); } if (Array.isArray(data.vault)) { vaultMemories = data.vault; saveVault(); } if (Array.isArray(data.memory)) { crossChatMemory = data.memory; saveCrossChatMemory(); } if (Array.isArray(data.music)) { musicLibrary = data.music; saveMusic(); } showToast('✅ Imported'); closeModal('settingsModal'); } catch(err) { showToast('⚠️ Invalid'); } }; reader.readAsText(file); e.target.value = ''; }
+window.importData = importData;
 
-// ============ INSTALL PWA ============
 window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredInstallPrompt = e; const btn = document.getElementById('installAppBtn'); if (btn) btn.style.display = 'inline-flex'; });
 window.addEventListener('appinstalled', () => { deferredInstallPrompt = null; const btn = document.getElementById('installAppBtn'); if (btn) btn.style.display = 'none'; showToast('✅ Installed!'); });
 async function promptInstallApp() { if (!deferredInstallPrompt) { showToast('Menu → "Add to Home Screen"'); return; } deferredInstallPrompt.prompt(); await deferredInstallPrompt.userChoice; deferredInstallPrompt = null; }
+window.promptInstallApp = promptInstallApp;
 
-// ============ UNIVERSAL DOWNLOAD ============
 async function downloadFile(url, filename) {
   try {
-    // Try fetch + blob for direct download (works best on mobile)
     const response = await fetch(url, { mode: 'cors' });
     if (!response.ok) throw new Error('Fetch failed');
     const blob = await response.blob();
@@ -2176,7 +2033,6 @@ async function downloadFile(url, filename) {
     showToast('✅ Downloaded to your phone!');
     return true;
   } catch (err) {
-    // Fallback: open in new tab (user can long-press to save)
     const a = document.createElement('a');
     a.href = url; a.download = filename || 'wiseking-download'; a.target = '_blank';
     a.rel = 'noopener';
@@ -2187,13 +2043,18 @@ async function downloadFile(url, filename) {
 }
 window.downloadFile = downloadFile;
 
-// ============ IMAGES / VIDEOS / SEARCH / BUILD PANELS ============
 function openImagesPanel() { document.getElementById('imagesPanel').classList.add('show'); closeSidebar(); updateReplicateStatus(); }
+window.openImagesPanel = openImagesPanel;
 function closeImagesPanel() { document.getElementById('imagesPanel').classList.remove('show'); }
+window.closeImagesPanel = closeImagesPanel;
 function openVideosPanel() { document.getElementById('videosPanel').classList.add('show'); closeSidebar(); }
+window.openVideosPanel = openVideosPanel;
 function closeVideosPanel() { document.getElementById('videosPanel').classList.remove('show'); }
+window.closeVideosPanel = closeVideosPanel;
 function openVideoGallery() { document.getElementById('videoGalleryPanel').classList.add('show'); closeSidebar(); renderVideoGallery(); }
+window.openVideoGallery = openVideoGallery;
 function closeVideoGallery() { document.getElementById('videoGalleryPanel').classList.remove('show'); }
+window.closeVideoGallery = closeVideoGallery;
 function renderVideoGallery() {
   const box = document.getElementById('videoGalleryContent'); if (!box) return;
   const vids = library.filter(i => i.type === 'video');
@@ -2202,6 +2063,7 @@ function renderVideoGallery() {
   if (!vids.length) { box.innerHTML = '<div class="result-card"><p>No videos yet.</p></div>'; return; }
   box.innerHTML = vids.map(v => `<div class="result-card"><h4>🎬 ${escapeHtml((v.prompt||'').slice(0,80))}</h4><p style="color:var(--text-secondary);font-size:13px">${escapeHtml((v.text||'').slice(0,200))}...</p></div>`).join('');
 }
+window.renderVideoGallery = renderVideoGallery;
 
 async function generateImageFromPanel() {
   const prompt = document.getElementById('imagesPromptInput').value.trim();
@@ -2230,6 +2092,7 @@ async function generateImageFromPanel() {
 window.generateImageFromPanel = generateImageFromPanel;
 
 function shareImageUrl(url) { currentShareTarget = { type: 'image', text: `Check out this AI image: ${url}` }; openSharePopup(); }
+window.shareImageUrl = shareImageUrl;
 
 async function generateVideoFromPanel() {
   const prompt = document.getElementById('videosPromptInput').value.trim();
@@ -2259,10 +2122,12 @@ function downloadText(encodedText, filename) {
 window.downloadText = downloadText;
 
 function updateReplicateStatus() { const el = document.getElementById('replicateStatus'); if (!el) return; const key = localStorage.getItem('wk_replicate_key'); el.textContent = key ? '✅ Replicate connected' : '💡 Add Replicate key for hyper-real images.'; }
+window.updateReplicateStatus = updateReplicateStatus;
 
-// ============ MUSIC GENERATION ============
 function openMusicPanel() { document.getElementById('musicPanel').classList.add('show'); closeSidebar(); renderMusicLibrary(); }
+window.openMusicPanel = openMusicPanel;
 function closeMusicPanel() { document.getElementById('musicPanel').classList.remove('show'); }
+window.closeMusicPanel = closeMusicPanel;
 
 function renderMusicLibrary() {
   const box = document.getElementById('musicLibraryBox'); if (!box) return;
@@ -2283,6 +2148,7 @@ function renderMusicLibrary() {
 window.renderMusicLibrary = renderMusicLibrary;
 
 function deleteMusicItem(i) { musicLibrary.splice(i, 1); saveMusic(); renderMusicLibrary(); showToast('Removed'); }
+window.deleteMusicItem = deleteMusicItem;
 
 async function generateMusicFromPanel() {
   const input = document.getElementById('musicInput').value.trim();
@@ -2363,9 +2229,10 @@ window.generateLyricsFromPanel = generateLyricsFromPanel;
 function openSunoLink() { window.open('https://suno.com/create', '_blank'); showToast('🎵 Paste your prompt on Suno!'); }
 window.openSunoLink = openSunoLink;
 
-// ============ PDF CHAT ============
 function openPdfChatPanel() { document.getElementById('pdfChatPanel').classList.add('show'); closeSidebar(); }
+window.openPdfChatPanel = openPdfChatPanel;
 function closePdfChatPanel() { document.getElementById('pdfChatPanel').classList.remove('show'); }
+window.closePdfChatPanel = closePdfChatPanel;
 
 async function handlePdfUpload(e) {
   const file = e.target.files[0];
@@ -2403,6 +2270,7 @@ async function autoSummarizePdf() {
   if (res.success) box.innerHTML = `<div class="result-card"><h4>📄 PDF Summary</h4>${renderMarkdown(res.reply)}</div>`;
   else box.innerHTML = `<div class="result-card"><p>⚠️ Summary failed.</p></div>`;
 }
+window.autoSummarizePdf = autoSummarizePdf;
 
 async function askPdfQuestion() {
   const q = document.getElementById('pdfQuestionInput').value.trim();
@@ -2421,7 +2289,6 @@ async function askPdfQuestion() {
 }
 window.askPdfQuestion = askPdfQuestion;
 
-// PDF Drag & drop
 const pdfDZ = document.getElementById('pdfDropzone');
 if (pdfDZ) {
   ['dragenter','dragover'].forEach(ev => pdfDZ.addEventListener(ev, e => { e.preventDefault(); pdfDZ.classList.add('dragover'); }));
@@ -2429,9 +2296,10 @@ if (pdfDZ) {
   pdfDZ.addEventListener('drop', e => { const files = e.dataTransfer.files; if (files.length) handlePdfUpload({target: {files: [files[0]]}}); });
 }
 
-// ============ TRANSLATION ============
 function openTranslatePanel() { document.getElementById('translatePanel').classList.add('show'); closeSidebar(); }
+window.openTranslatePanel = openTranslatePanel;
 function closeTranslatePanel() { document.getElementById('translatePanel').classList.remove('show'); }
+window.closeTranslatePanel = closeTranslatePanel;
 function swapLanguages() {
   const from = document.getElementById('translateFrom'), to = document.getElementById('translateTo');
   if (from.value === 'auto') { showToast('Cannot swap auto-detect'); return; }
@@ -2522,9 +2390,10 @@ function startLiveTranslateVoice() {
 }
 window.startLiveTranslateVoice = startLiveTranslateVoice;
 
-// ============ DATA ANALYSIS ============
 function openDataAnalysisPanel() { document.getElementById('dataAnalysisPanel').classList.add('show'); closeSidebar(); }
+window.openDataAnalysisPanel = openDataAnalysisPanel;
 function closeDataAnalysisPanel() { document.getElementById('dataAnalysisPanel').classList.remove('show'); }
+window.closeDataAnalysisPanel = closeDataAnalysisPanel;
 
 async function handleDataUpload(e) {
   const file = e.target.files[0];
@@ -2557,6 +2426,7 @@ function parseCsvAndAnalyze(text, name) {
   const rows = lines.map(line => parseCsvLine(line));
   analyzeTable(rows, name);
 }
+window.parseCsvAndAnalyze = parseCsvAndAnalyze;
 
 function parseCsvLine(line) {
   const result = []; let cur = ''; let inQ = false;
@@ -2627,9 +2497,9 @@ function analyzeTable(rows, name) {
 
   results.innerHTML = `<div class="result-card"><h4>✅ ${escapeHtml(name)}</h4></div>` + statsHtml + statsTable + chartHtml + `<div id="dataAIInsights"></div>`;
 
-  // AI insights
   aiDataInsight(headers, data, numericCols);
 }
+window.analyzeTable = analyzeTable;
 
 async function aiDataInsight(headers, data, numericCols) {
   const box = document.getElementById('dataAIInsights');
@@ -2641,8 +2511,8 @@ async function aiDataInsight(headers, data, numericCols) {
   if (res.success) box.innerHTML = `<div class="result-card"><h4>🧠 AI Insights</h4>${renderMarkdown(res.reply)}</div>`;
   else box.innerHTML = `<div class="result-card"><p>⚠️ Insights failed.</p></div>`;
 }
+window.aiDataInsight = aiDataInsight;
 
-// Data dropzone
 const dataDZ = document.getElementById('dataDropzone');
 if (dataDZ) {
   ['dragenter','dragover'].forEach(ev => dataDZ.addEventListener(ev, e => { e.preventDefault(); dataDZ.classList.add('dragover'); }));
@@ -2650,9 +2520,10 @@ if (dataDZ) {
   dataDZ.addEventListener('drop', e => { const files = e.dataTransfer.files; if (files.length) handleDataUpload({target: {files: [files[0]]}}); });
 }
 
-// ============ DOWNLOAD HUB ============
 function openDownloadHub() { document.getElementById('downloadHubPanel').classList.add('show'); closeSidebar(); renderDownloadHub(); }
+window.openDownloadHub = openDownloadHub;
 function closeDownloadHub() { document.getElementById('downloadHubPanel').classList.remove('show'); }
+window.closeDownloadHub = closeDownloadHub;
 function filterDownloads(type) { currentDownloadFilter = type; renderDownloadHub(); }
 window.filterDownloads = filterDownloads;
 
@@ -2661,7 +2532,6 @@ function renderDownloadHub() {
   let items = [...library];
   if (currentDownloadFilter !== 'all') items = items.filter(i => i.type === currentDownloadFilter);
   
-  // Also add music
   const musicItems = musicLibrary.map(m => ({ type: 'music', title: m.title, prompt: m.prompt, audioUrl: m.audioUrl, createdAt: m.createdAt }));
   if (currentDownloadFilter === 'all' || currentDownloadFilter === 'music' || currentDownloadFilter === 'audio') items = [...musicItems, ...items];
   
@@ -2684,10 +2554,12 @@ function renderDownloadHub() {
     </div>`;
   }).join('');
 }
+window.renderDownloadHub = renderDownloadHub;
 
-// ============ SEARCH WEB / BUILD APP ============
 function openSearchWebPanel() { document.getElementById('searchWebPanel').classList.add('show'); closeSidebar(); renderSearchSuggestions(); }
+window.openSearchWebPanel = openSearchWebPanel;
 function closeSearchWebPanel() { document.getElementById('searchWebPanel').classList.remove('show'); }
+window.closeSearchWebPanel = closeSearchWebPanel;
 function renderSearchSuggestions() {
   const box = document.getElementById('searchSuggestionsBox'); if (!box) return;
   const suggestions = [
@@ -2702,6 +2574,7 @@ function renderSearchSuggestions() {
   ];
   box.innerHTML = suggestions.map(s => `<a class="quick-chip ${s.cls}" href="${s.url}" target="_blank" rel="noopener"><i class="fab ${s.icon}"></i> ${s.label}</a>`).join('');
 }
+window.renderSearchSuggestions = renderSearchSuggestions;
 async function doSearchWeb(query) {
   const results = document.getElementById('searchWebResults');
   const shortcut = document.getElementById('askWiseKingShortcut');
@@ -2723,13 +2596,14 @@ window.askWiseKingFromSearch = askWiseKingFromSearch;
 
 const BUILD_IDEAS = [ { t:'Business Landing Page', d:'Modern responsive landing' }, { t:'Portfolio Website', d:'Showcase your work' }, { t:'Restaurant Menu App', d:'Digital menu with cart' }, { t:'Todo List App', d:'Track daily tasks' }, { t:'Weather Dashboard', d:'Live weather API' }, { t:'E-commerce Store', d:'Full online shop' }, { t:'Chat Application', d:'Real-time messaging' } ];
 function openBuildAppPanel() { document.getElementById('buildAppPanel').classList.add('show'); closeSidebar(); filterBuildIdeas(''); }
+window.openBuildAppPanel = openBuildAppPanel;
 function closeBuildAppPanel() { document.getElementById('buildAppPanel').classList.remove('show'); }
+window.closeBuildAppPanel = closeBuildAppPanel;
 function filterBuildIdeas(q) { const box = document.getElementById('buildAppIdeas'); if (!box) return; const query = (q || '').toLowerCase(); const list = BUILD_IDEAS.filter(i => !query || i.t.toLowerCase().includes(query)); box.innerHTML = list.map(i => { const e = i.t.replace(/'/g, "\\'"); return `<div class="result-card" onclick="buildApp('${e}')" style="cursor:pointer"><h4>💡 ${escapeHtml(i.t)}</h4><p>${escapeHtml(i.d)}</p></div>`; }).join(''); }
-function buildApp(name) { closeBuildAppPanel(); insertQuickPrompt(`Build a complete single-file HTML app: ${name}.`); }
 window.filterBuildIdeas = filterBuildIdeas;
+function buildApp(name) { closeBuildAppPanel(); insertQuickPrompt(`Build a complete single-file HTML app: ${name}.`); }
 window.buildApp = buildApp;
 
-// ============ SEND MESSAGE ============
 function sendMessage(textOverride) {
   if (isSending) return;
   const input = document.getElementById('messageInput');
@@ -2749,7 +2623,6 @@ function sendMessage(textOverride) {
 }
 window.sendMessage = sendMessage;
 
-// ============ RENDER MESSAGES ============
 function renderMessages() {
   const area = document.getElementById('messagesArea'); if (!area) return;
   area.innerHTML = '';
@@ -2801,23 +2674,29 @@ function buildMessageEl(msg, idx, chatId) {
   el.appendChild(avatar); el.appendChild(body);
   return el;
 }
+window.buildMessageEl = buildMessageEl;
 
 function handleLikeMessage(idx) { const chat = chats.find(c => c.id === activeChatId); if (!chat || !chat.messages[idx]) return; chat.messages[idx].feedback = 'up'; saveChats(); renderMessages(); showToast('Thank you! ✅'); }
+window.handleLikeMessage = handleLikeMessage;
 function handleDislikeMessage(idx) { const chat = chats.find(c => c.id === activeChatId); if (!chat || !chat.messages[idx]) return; chat.messages[idx].feedback = 'down'; saveChats(); renderMessages(); document.getElementById('dislikeFeedbackInput').value = ''; document.getElementById('dislikeModal').classList.add('show'); }
+window.handleDislikeMessage = handleDislikeMessage;
 function submitDislikeFeedback() { closeModal('dislikeModal'); showToast('👎 Noted. Thank you!'); }
+window.submitDislikeFeedback = submitDislikeFeedback;
 function handleRegenerateMessage(chatId, msgIdx) { const chat = chats.find(c => c.id === chatId); if (!chat || isSending) return; let uIdx = -1; for (let i = msgIdx - 1; i >= 0; i--) { if (chat.messages[i].role === 'user') { uIdx = i; break; } } if (uIdx === -1) return; const userMsg = chat.messages[uIdx]; chat.messages.splice(msgIdx, 1); saveChats(); renderMessages(); triggerResponse(chat, userMsg); }
+window.handleRegenerateMessage = handleRegenerateMessage;
 function handleCopyMessage(idx) { const chat = chats.find(c => c.id === activeChatId); if (!chat || !chat.messages[idx]) return; const text = chat.messages[idx].content || ''; if (!text) return showToast('Nothing to copy'); wkCopyToClipboard(text).then(ok => showToast(ok ? '📋 Copied!' : '⚠️ Failed')); }
+window.handleCopyMessage = handleCopyMessage;
 function handleShareMessage(idx) { const chat = chats.find(c => c.id === activeChatId); if (!chat || !chat.messages[idx]) return; currentShareTarget = { type: 'message', text: chat.messages[idx].content || '' }; openSharePopup(); }
+window.handleShareMessage = handleShareMessage;
 function handleEditMessage(idx) { const chat = chats.find(c => c.id === activeChatId); if (!chat || !chat.messages[idx]) return; const msg = chat.messages[idx]; if (msg.role !== 'user') return; editingMessageIdx = idx; document.getElementById('editMessageInput').value = msg.content || ''; document.getElementById('editMessageModal').classList.add('show'); }
+window.handleEditMessage = handleEditMessage;
 function handleDeleteMessage(idx) { deletingMessageIdx = idx; document.getElementById('deleteMessageModal').classList.add('show'); }
+window.handleDeleteMessage = handleDeleteMessage;
 function saveEditedMessage() { if (editingMessageIdx < 0) return; const chat = chats.find(c => c.id === activeChatId); if (!chat) return; const newText = document.getElementById('editMessageInput').value.trim(); if (!newText) return showToast('Message required'); const msg = chat.messages[editingMessageIdx]; msg.content = newText; msg.edited = true; if (chat.messages[editingMessageIdx + 1] && chat.messages[editingMessageIdx + 1].role === 'ai') chat.messages.splice(editingMessageIdx + 1, 1); closeModal('editMessageModal'); editingMessageIdx = -1; saveChats(); renderMessages(); triggerResponse(chat, msg); }
+window.saveEditedMessage = saveEditedMessage;
 function confirmDeleteMessage() { if (deletingMessageIdx < 0) return; const chat = chats.find(c => c.id === activeChatId); if (!chat) return; const msg = chat.messages[deletingMessageIdx]; if (!msg) { closeModal('deleteMessageModal'); deletingMessageIdx = -1; return; } if (msg.role === 'user' && chat.messages[deletingMessageIdx + 1] && chat.messages[deletingMessageIdx + 1].role === 'ai') chat.messages.splice(deletingMessageIdx, 2); else chat.messages.splice(deletingMessageIdx, 1); closeModal('deleteMessageModal'); deletingMessageIdx = -1; saveChats(); renderMessages(); showToast('🗑️ Deleted'); }
+window.confirmDeleteMessage = confirmDeleteMessage;
 
-function wkCopyToClipboard(text) { return new Promise((resolve) => { try { if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(() => resolve(true)).catch(() => resolve(fallbackCopy(text))); } else resolve(fallbackCopy(text)); } catch (e) { resolve(fallbackCopy(text)); } }); }
-window.wkCopyToClipboard = wkCopyToClipboard;
-function fallbackCopy(text) { try { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.top = '-1000px'; document.body.appendChild(ta); ta.select(); const ok = document.execCommand('copy'); ta.remove(); return !!ok; } catch (e) { return false; } }
-
-// ============ AI RESPONSE ============
 async function sendMessageWithFallback(userText, chatHistory = [], signal = null) {
   const apiKey = (localStorage.getItem('wk_api_key') || '').trim() || ENV_GEMINI_KEY;
   const model = localStorage.getItem('wk_model') || 'gemini-3.5-flash-lite';
@@ -2869,20 +2748,8 @@ async function triggerResponse(chat, userMsg) {
   btn.classList.remove('stop'); btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
   handleInputChange(); saveChats(); renderMessages();
 }
+window.triggerResponse = triggerResponse;
 
-// ============ CHAT SEARCH ============
-function toggleChatSearch() {
-  const bar = document.getElementById('chatSearchBar');
-  if (!bar) return;
-  bar.classList.toggle('show');
-  if (bar.classList.contains('show')) {
-    const input = document.getElementById('chatSearchInput');
-    if (input) { input.value = ''; input.focus(); }
-  }
-}
-window.toggleChatSearch = toggleChatSearch;
-
-// ============ INIT ============
 function init() {
   try {
     loadVault(); loadLibrary(); loadCrossChatMemory(); loadProjects(); loadMusic();
@@ -2900,7 +2767,6 @@ function init() {
     initHoldToSpeak();
     if (typeof pdfjsLib !== 'undefined') pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     if (localStorage.getItem('wk_guest_mode') === '1') unlockApp('Guest', 'Guest Mode (not synced)', null);
-    // Load voice lang from localStorage
     currentVoiceLang = localStorage.getItem('wk_voice_lang') || 'en-NG';
   } catch(e){ console.warn('Init error', e); }
 }
@@ -2910,7 +2776,6 @@ document.getElementById('sharePopup')?.addEventListener('click', (e) => { if (e.
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
 else init();
 
-// ============ EXPOSE GLOBAL FUNCTIONS ============
 Object.assign(window, {
   openImagesPanel, closeImagesPanel, openVideosPanel, closeVideosPanel,
   openVideoGallery, closeVideoGallery, openLibraryPanel, closeLibraryPanel,
@@ -2936,4 +2801,3 @@ Object.assign(window, {
 </script>
 </body>
 </html>
-  
